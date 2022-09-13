@@ -1,3 +1,24 @@
+console.clear();
+console.log('-----');
+
+function node(data, child) {   // Node Factory 
+  return {
+    data,
+    child,
+  }
+}
+
+function tree(root) {  // Tree Factory
+  return {
+      root,           // Root attribute
+  }
+}
+
+function buildTree(array) {   // returns the level-0 root node.
+  return root
+}
+
+
 // test = [1, 2, 3, 4, 5, 6, 7];
 
 // Assuming the following output format:
