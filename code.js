@@ -32,11 +32,12 @@ function buildTree(arr) {   // returns the level-0 root node.
     return node(arr[0], null, null);    // Make left/right null if reached last node
   }
 
-  const mid = (arr.length-1)/2;
+  const mid = Math.floor((arr.length-1)/2);
   const root = node(arr[mid], {}, {});
 
   const lhs = arr.splice(0, mid);
   const rhs = arr.splice(1, arr.length);
+
 
   root.left = buildTree(lhs);           // Applying recursion to LHS
   root.right = buildTree(rhs);          // Applying recursion to RHS
@@ -52,6 +53,10 @@ prettyPrint(root);            // visualise tree
 // Assuming the following output format:
 //       4
 //   2       6
+// 1   3   5   7
+
+//       5
+//   3       6
 // 1   3   5   7
 
 // tree2 = {
