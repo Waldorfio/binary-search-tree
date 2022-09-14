@@ -8,7 +8,6 @@ function node(data, left, right) {   // Node Factory
     right,
   }
 }
-exampleNode = node(4, null, null);
 
 // function tree(root) {  // Tree Factory
 //   return {
@@ -16,33 +15,32 @@ exampleNode = node(4, null, null);
 //   }
 // }
 
-function buildTree(arr, tree, dir) {   // returns the level-0 root node.
-  console.log('running buildTree...');
+
+function buildTree(arr) {   // returns the level-0 root node.
   // Base Case
-  if (arr.length < 1) {
-    return
+  if (arr.length <= 1) {
+    return node(arr[0], null, null);    // Make left/right null if reached last node
   }
   
-  midIdx = (arr.length-1)/2;
-  midNode = node(arr[midIdx], {}, {});
+  mid = (arr.length-1)/2;
+  root = node(arr[mid], {}, {});
 
-  if (dir=='initial') {tree = midNode};
-  if (dir=='left') {tree.left = midNode};
-  if (dir=='right') {tree.right = midNode};
-
-  lhs = arr.splice(0, midIdx);
+  lhs = arr.splice(0, mid);
   rhs = arr.splice(1, arr.length);
 
-  buildTree(lhs, tree.left, 'left');
-  buildTree(rhs, tree.right, 'right');
-  console.log(tree);
-  return
+  console.log('**********')
+  console.log('midIdx:'+mid+' midVal:'+root.data);
+  console.log('lhs:'+lhs+' rhs:'+rhs);
+  console.log(root);
 
+  root.left = buildTree(lhs);
+  root.right = buildTree(rhs);
+
+  return root
 }
 
 test = [1, 2, 3, 4, 5, 6, 7];
-
-buildTree(test, {}, 'initial');
+buildTree(test);
 
 // Assuming the following output format:
 //       4
@@ -51,32 +49,32 @@ buildTree(test, {}, 'initial');
 // as an object literal
 
 
-tree2 = {
-    data: 4,
-    left: {
-        data: 2,
-        left: {
-            data: 1,
-            left: null,
-            right: null
-        },
-        right: {
-            data: 3,
-            left: null,
-            right: null
-        }
-    },
-    right: {
-        data: 6,
-        left: {
-            data: 5,
-            left: null,
-            right: null
-        },
-        right: {
-            data: 7,
-            left: null,
-            right: null
-        }
-    }
-};
+// tree2 = {
+//     data: 4,
+//     left: {
+//         data: 2,
+//         left: {
+//             data: 1,
+//             left: null,
+//             right: null
+//         },
+//         right: {
+//             data: 3,
+//             left: null,
+//             right: null
+//         }
+//     },
+//     right: {
+//         data: 6,
+//         left: {
+//             data: 5,
+//             left: null,
+//             right: null
+//         },
+//         right: {
+//             data: 7,
+//             left: null,
+//             right: null
+//         }
+//     }
+// };
