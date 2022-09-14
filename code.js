@@ -1,12 +1,12 @@
 console.clear();
 console.log('-----');
 
-function node(data, left, right) {   // Node Factory 
+function node(data, left, right) {   // Node Factory
   return {
     data,
     left,
-    right,
-  }
+    right
+  };
 }
 
 // function tree(root) {  // Tree Factory
@@ -20,7 +20,7 @@ function buildTree(arr) {   // returns the level-0 root node.
   if (arr.length <= 1) {
     return node(arr[0], null, null);    // Make left/right null if reached last node
   }
-  
+
   const mid = (arr.length-1)/2;
   const root = node(arr[mid], {}, {});
 
