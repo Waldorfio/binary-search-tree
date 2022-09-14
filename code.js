@@ -15,6 +15,17 @@ function node(data, left, right) {   // Node Factory
 //   }
 // }
 
+// Custom print function to visualise tree (from the Odin Project)
+const prettyPrint = (node, prefix = '', isLeft = true) => {
+  if (node.right !== null) {
+    prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+  }
+  console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+  if (node.left !== null) {
+    prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+  }
+}
+
 function buildTree(arr) {   // returns the level-0 root node.
   // Base Case
   if (arr.length <= 1) {
@@ -27,22 +38,21 @@ function buildTree(arr) {   // returns the level-0 root node.
   const lhs = arr.splice(0, mid);
   const rhs = arr.splice(1, arr.length);
 
-  root.left = buildTree(lhs);
-  root.right = buildTree(rhs);
+  root.left = buildTree(lhs);           // Applying recursion to LHS
+  root.right = buildTree(rhs);          // Applying recursion to RHS
 
-  return root
+  return root     // Returning root, so that the root.left/right expressions above can capture the tree
 }
 
-test = [1, 2, 3, 4, 5, 6, 7];
-root = buildTree(test);
-console.log(root);
+test = [1, 2, 3, 4, 5, 6, 7]; // test dataset
+root = buildTree(test);       // build the tree
+prettyPrint(root);            // visualise tree
+
 
 // Assuming the following output format:
 //       4
 //   2       6
 // 1   3   5   7
-// as an object literal
-
 
 // tree2 = {
 //     data: 4,
