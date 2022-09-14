@@ -15,23 +15,17 @@ function node(data, left, right) {   // Node Factory
 //   }
 // }
 
-
 function buildTree(arr) {   // returns the level-0 root node.
   // Base Case
   if (arr.length <= 1) {
     return node(arr[0], null, null);    // Make left/right null if reached last node
   }
   
-  mid = (arr.length-1)/2;
-  root = node(arr[mid], {}, {});
+  const mid = (arr.length-1)/2;
+  const root = node(arr[mid], {}, {});
 
-  lhs = arr.splice(0, mid);
-  rhs = arr.splice(1, arr.length);
-
-  console.log('**********')
-  console.log('midIdx:'+mid+' midVal:'+root.data);
-  console.log('lhs:'+lhs+' rhs:'+rhs);
-  console.log(root);
+  const lhs = arr.splice(0, mid);
+  const rhs = arr.splice(1, arr.length);
 
   root.left = buildTree(lhs);
   root.right = buildTree(rhs);
@@ -40,7 +34,8 @@ function buildTree(arr) {   // returns the level-0 root node.
 }
 
 test = [1, 2, 3, 4, 5, 6, 7];
-buildTree(test);
+root = buildTree(test);
+console.log(root);
 
 // Assuming the following output format:
 //       4
